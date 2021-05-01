@@ -1,9 +1,11 @@
 const User = require('./Model');
 
 function userDeleteById(req, res) {
-  const userId = req.params.userId;
+  const userId = req.params.userID;
 
-  User.deleteOne(userId)
+  //console.log(req.params);
+
+  User.deleteOne({ _id: userId })
     .then((result) => {
       res.status(200).json(result);
     })
