@@ -8,8 +8,7 @@ const info = require('../info/info');
 */
 const home = require('../home/home');
 const infoRouter = require('../info/Routes');
-//const userRouter = require('../user/Routes');
-const userRegister = require('../user/userRegister');
+const userRouter = require('../user/Routes');
 
 let cards = [
   { id: '1', name: 'First card', status: 'to do', priority: 2 },
@@ -20,7 +19,7 @@ function routes(app) {
   app.get('/', home);
   app.use('/info', infoRouter); //app.get('/info', info);
   console.log('routes');
-  app.use('/user', userRegister);
+  app.use('/user', userRouter);
   app.get('/card', card);
 
   //app.get('/card', cardGetAll);
