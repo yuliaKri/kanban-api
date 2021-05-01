@@ -12,7 +12,7 @@ const logger = require('./modules/core/logger');
 const cors = require('./modules/core/cors');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 logger(app);
 dbConnection();
