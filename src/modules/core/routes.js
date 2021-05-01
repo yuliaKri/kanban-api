@@ -18,7 +18,7 @@ let cards = [
 function routes(app) {
   app.get('/', home);
   app.use('/info', infoRouter); //app.get('/info', info);
-  console.log('routes');
+  //console.log('routes');
   app.use('/user', userRouter);
   app.get('/card', card);
 

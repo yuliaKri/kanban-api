@@ -1,7 +1,9 @@
 const User = require('./Model');
 
 function userGetById(req, res) {
-  User.find()
+  const userId = req.params.userId;
+
+  User.findById(userId)
     .exec()
     .then((result) => {
       res.status(200).json(result);
