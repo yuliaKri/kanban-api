@@ -4,7 +4,7 @@ const routes = require('./modules/core/routes');
 const express = require('express');
 //import express from 'express';
 //"start": "nodemon --inspect --exec babel-node index.js",
-//"start": "nodemon --inspect src/index.js",
+//"start": "nodemon --inspect src/index.js",***
 const bodyParser = require('./modules/core/bodyParser');
 const dbConnection = require('./modules/core/dbConnection');
 // eslint-disable-next-line no-unused-vars
