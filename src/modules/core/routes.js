@@ -9,6 +9,7 @@ const info = require('../info/info');
 const home = require('../home/home');
 const infoRouter = require('../info/Routes');
 const userRouter = require('../user/Routes');
+const cardRouter = require('../card/Routes');
 
 let cards = [
   { id: '1', name: 'First card', status: 'to do', priority: 2 },
@@ -23,9 +24,8 @@ const columns = [
 function routes(app) {
   app.get('/', home);
   app.use('/info', infoRouter); //app.get('/info', info);
-  //console.log('routes');
   app.use('/user', userRouter);
-  app.get('/card', card);
+  app.get('/card', cardRouter); //app.get('/card', card);
   app.get('/columns', column);
 
   //app.get('/card', cardGetAll);
@@ -40,12 +40,12 @@ function routes(app) {
     res.send('card deleted');
   });
 
-  app.post('/card', (req, res) => {
+  /*app.post('/card', (req, res) => {
     const card = req.body;
     cards.push({ id: Math.random().toString(), ...card });
     // console.log(req.body)
     res.send('card created');
-  });
+  });*/
 
   app.patch('/card/:cardID', (req, res) => {
     const cardId = req.params.cardID;
@@ -59,10 +59,6 @@ function routes(app) {
     console.log(cards);
     res.send('card updated');
   });
-
-  function card(req, res) {
-    res.send(cards);
-  }
 
   function column(req, res) {
     res.send(columns);
