@@ -1,8 +1,16 @@
+const User = require('./Model');
+
 function cardCreate(req, res) {
-  if (!req.body) return res.sendStatus(400);
-
   console.log(req.body);
-  res.send('card created');
+  // res.send('userRegister is here');
+  const newUser = new User({
+    name: req.body.name,
+    description: req.body.description,
+    status: req.body.status,
+    priority: req.body.priority,
+  });
+  newUser.save();
+  res.status(200).json('card created');
+  //console.log('new card should be created from react');
 }
-
 module.exports = cardCreate;
