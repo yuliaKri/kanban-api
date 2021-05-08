@@ -14,13 +14,19 @@ let cards = [
   { id: '1', name: 'First card', status: 'to do', priority: 2 },
   { id: '2', name: 'Second card', status: 'progress', priority: 1 },
 ];
-
+const columns = [
+  { id: '60123904f391a2003c03f381', title: 'to do', status: 'to do' },
+  { id: '60123953f391a2003c03f382', title: 'progress', status: 'progress' },
+  { id: '6016ebe2c77c9f003cfd9407', title: 'review', status: 'review' },
+  { id: '601adf9bda76bc003c31448a', title: 'done', status: 'done' },
+];
 function routes(app) {
   app.get('/', home);
   app.use('/info', infoRouter); //app.get('/info', info);
   //console.log('routes');
   app.use('/user', userRouter);
   app.get('/card', card);
+  app.get('/columns', column);
 
   //app.get('/card', cardGetAll);
   //app.post('/card', bodyParser(app), cardCreate);
@@ -56,6 +62,10 @@ function routes(app) {
 
   function card(req, res) {
     res.send(cards);
+  }
+
+  function column(req, res) {
+    res.send(columns);
   }
 }
 
