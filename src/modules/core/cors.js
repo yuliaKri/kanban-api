@@ -1,5 +1,5 @@
 function cors(app) {
-  console.log('cors');
+  //console.log('cors');
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header(

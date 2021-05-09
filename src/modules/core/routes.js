@@ -1,32 +1,26 @@
-/*
-const cardCreate = require('../card/cardCreate');
-const cardDelete = require('../card/cardDelete');
-const cardUpdate = require('../card/cardUpdate');
-const cardGetAll = require('../card/cardGetAll');
-const bodyParser = require('body-parser');
-const info = require('../info/info');
-*/
 const home = require('../home/home');
 const infoRouter = require('../info/Routes');
 const userRouter = require('../user/Routes');
 const cardRouter = require('../card/Routes');
 
-/*let cards = [
-  { id: '1', name: 'First card', status: 'to do', priority: 2 },
-  { id: '2', name: 'Second card', status: 'progress', priority: 1 },
-];*/
 const columns = [
   { id: '60123904f391a2003c03f381', title: 'to do', status: 'to do' },
   { id: '60123953f391a2003c03f382', title: 'progress', status: 'progress' },
   { id: '6016ebe2c77c9f003cfd9407', title: 'review', status: 'review' },
   { id: '601adf9bda76bc003c31448a', title: 'done', status: 'done' },
 ];
+
 function routes(app) {
+  console.log('routes');
   app.get('/', home);
   app.use('/info', infoRouter); //app.get('/info', info);
   app.use('/user', userRouter);
   app.use('/card', cardRouter); //app.get('/card', card);
   app.get('/columns', column);
+
+  function column(req, res) {
+    res.send(columns);
+  }
 
   //app.get('/card', cardGetAll);
   //app.post('/card', bodyParser(app), cardCreate);
@@ -59,10 +53,6 @@ function routes(app) {
     console.log(cards);
     res.send('card updated');
   });*/
-
-  function column(req, res) {
-    res.send(columns);
-  }
 }
 
 module.exports = routes;

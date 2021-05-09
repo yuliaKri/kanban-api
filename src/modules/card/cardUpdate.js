@@ -2,10 +2,7 @@ const Card = require('./Model');
 
 function cardUpdate(req, res) {
   const cardId = req.params.cardID;
-
-  delete req.body.password;
-
-  console.log(req.params);
+  console.log(req.params, req.body);
   Card.updateOne({ _id: cardId }, req.body)
     .exec()
     .then((result) => {
@@ -15,7 +12,7 @@ function cardUpdate(req, res) {
       console.log(err);
       res.status(400).json('card update error');
     });
-  res.send('card updated');
+  res.send('card was updated');
 }
 
 module.exports = cardUpdate;

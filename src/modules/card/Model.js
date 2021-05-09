@@ -7,6 +7,7 @@ const cardSchema = new Schema({
   description: String,
   status: String,
   priority: String,
+  markedToDelete: Boolean,
 });
 
 const Card = mongoose.model('Card', cardSchema);
