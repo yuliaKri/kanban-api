@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const date = require('date-and-time');
+//const date = require('date-and-time');
 
 const { Schema } = mongoose; //Schems = mongoose.schema;
 
@@ -9,7 +9,7 @@ const cardSchema = new Schema({
   status: String,
   priority: Number,
   markedToDelete: Boolean,
-  createdAt: date,
+  // createdAt: date,
 });
 
 const Card = mongoose.model('Card', cardSchema);
