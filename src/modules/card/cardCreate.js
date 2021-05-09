@@ -11,6 +11,5 @@ function cardCreate(req, res) {
   });
   newCard.save();
   res.status(200).json('card created');
-  //console.log('new card should be created from react');
 }
 module.exports = cardCreate;

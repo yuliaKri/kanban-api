@@ -8,7 +8,7 @@ function cardGetAll(req, res) {
     })
     .catch((err) => {
       console.log(err);
-      res.status(400).json('Card get all error');
+      res.status(400).json('Cards get all error');
     });
 }
 
