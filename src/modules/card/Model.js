@@ -6,7 +6,7 @@ const cardSchema = new Schema({
   name: String,
   description: String,
   status: String,
-  priority: String,
+  priority: Number,
   markedToDelete: Boolean,
 });
 
