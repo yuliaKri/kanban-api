@@ -11,7 +11,6 @@ const columns = [
 ];
 
 function routes(app) {
-  console.log('routes');
   app.get('/', home);
   app.use('/info', infoRouter); //app.get('/info', info);
   app.use('/user', userRouter);

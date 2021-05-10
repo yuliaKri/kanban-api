@@ -3,12 +3,20 @@ const userRegister = require('./userRegister');
 const userGetAll = require('./userGetAll');
 const userGetById = require('./userGetById');
 const userDeleteById = require('./userDeleteById');
+const userAuth = require('./userAuth');
+const userLogin = require('./userLogin');
 
 const router = Routes();
 
-router.post('/', userRegister);
+router.post('/user', userRegister);
 router.get('/', userGetAll);
 router.get('/:userID', userGetById);
 router.delete('/:userID', userDeleteById);
+//console.log('user routes');
+//**** authentication **** //
+// user/register
+router.post('/register', userAuth); // [check('email', 'Incorrect email').isEmail(), check('password').isLength({ min: 6 })],
+// user/login
+router.post('/login', userLogin);
 
 module.exports = router;
