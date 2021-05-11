@@ -16,12 +16,16 @@ router.delete('/:userID', userDeleteById);
 
 //**** authentication **** //
 // user/register
-router.post('/register', check('email', 'Incorrect email').isEmail(), userAuth);
-// [check('email', 'Incorrect email').isEmail(), check('password').isLength({ min: 6 })],
+router.post(
+  '/register',
+  check('email', 'Invalid email. Please, inter a valid email!').isEmail(),
+  userAuth,
+);
+// [check('email', 'Invalid email. Please, inter a valid email!').isEmail(), check('password').isLength({ min: 6 })],
 // user/login
 router.post(
   '/login',
-  check('email', 'Inter correct email').normalizeEmail().isEmail(),
+  check('email', 'Inter valid email').normalizeEmail().isEmail(),
   userLogin,
 );
 
