@@ -13,11 +13,16 @@ router.post('/user', userRegister);
 router.get('/', userGetAll);
 router.get('/:userID', userGetById);
 router.delete('/:userID', userDeleteById);
-//console.log('user routes');
+
 //**** authentication **** //
 // user/register
-router.post('/register', check('email', 'Incorrect email').isEmail(), userAuth); // [check('email', 'Incorrect email').isEmail(), check('password').isLength({ min: 6 })],
+router.post('/register', check('email', 'Incorrect email').isEmail(), userAuth);
+// [check('email', 'Incorrect email').isEmail(), check('password').isLength({ min: 6 })],
 // user/login
-router.post('/login', userLogin);
+router.post(
+  '/login',
+  check('email', 'Inter correct email').normalizeEmail().isEmail(),
+  userLogin,
+);
 
 module.exports = router;
