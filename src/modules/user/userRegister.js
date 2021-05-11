@@ -8,7 +8,7 @@ function userRegister(req, res) {
     password: req.body.password,
   });
   newUser.save();
-  res.status(200).json('user created');
+  res.status(200).json('the user was created');
   console.log('new user should be created from react');
 }
 module.exports = userRegister;

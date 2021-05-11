@@ -13,6 +13,6 @@ function dbConnection() {
   mongoose
     .connect(connectionString, options)
     .then(() => console.log('Mongo connection OK'))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log('Server error', err.message));
 }
 module.exports = dbConnection;
