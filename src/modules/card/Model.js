@@ -9,7 +9,8 @@ const cardSchema = new Schema({
   status: String,
   priority: Number,
   markedToDelete: Boolean,
-  // createdAt: date,
+  user: { type: String, required: false },
+  // createdAt: Date,
 });
 
 const Card = mongoose.model('Card', cardSchema);
