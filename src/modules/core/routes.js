@@ -3,7 +3,7 @@ const infoRouter = require('../info/Routes');
 const userRouter = require('../user/Routes');
 const cardRouter = require('../card/Routes');
 //const multer = require('multer');
-const cloudinary = require('cloudinary');
+//const cloudinary = require('cloudinary');
 //const cloudinaryStorage = require('multer-storage-cloudinary');
 
 const columns = [
@@ -20,7 +20,7 @@ function routes(app) {
   app.use('/card', cardRouter); //app.get('/card', card);
   app.get('/columns', column);
 
-  cloudinary.config({
+  /*  cloudinary.config({
     cloud_name: 'der0prs31',
     api_key: '896119133195875',
     api_secret: 'cloudinary',
