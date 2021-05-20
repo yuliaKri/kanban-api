@@ -10,7 +10,8 @@ const cardSchema = new Schema({
   priority: Number,
   markedToDelete: Boolean,
   user: { type: String, required: false },
-  // createdAt: Date,
+  imageURL: { type: String, required: false },
+  // createdAt: Date, //todo req exp, timestamps см. учебные реппозитории { timestamps: {}, versionKey: false },
 });
 
 const Card = mongoose.model('Card', cardSchema);

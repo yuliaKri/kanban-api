@@ -2,6 +2,9 @@ const home = require('../home/home');
 const infoRouter = require('../info/Routes');
 const userRouter = require('../user/Routes');
 const cardRouter = require('../card/Routes');
+//const multer = require('multer');
+const cloudinary = require('cloudinary');
+//const cloudinaryStorage = require('multer-storage-cloudinary');
 
 const columns = [
   { id: '60123904f391a2003c03f381', title: 'to do', status: 'to do' },
@@ -16,6 +19,29 @@ function routes(app) {
   app.use('/user', userRouter);
   app.use('/card', cardRouter); //app.get('/card', card);
   app.get('/columns', column);
+
+  cloudinary.config({
+    cloud_name: 'der0prs31',
+    api_key: '896119133195875',
+    api_secret: 'cloudinary',
+  });
+  /*const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: 'images',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  });
+  const parser = multer({ storage: storage });
+
+  app.post('/images', parser.single('image'), (req) => {
+    console.log(req.file); // to see what is returned to you
+    const image = {};
+    image.url = req.file.url;
+    image.id = req.file.public_id;
+    Image.create(image) // save image information in database
+      .then((newImage) => res.json(newImage))
+      .catch((err) => console.log(err));
+  });*/
 
   function column(req, res) {
     res.send(columns);
