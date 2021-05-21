@@ -11,7 +11,8 @@ const cardSchema = new Schema({
   markedToDelete: Boolean,
   user: { type: String, required: false },
   imageURL: { type: String, required: false },
-  // createdAt: Date, //todo req exp, timestamps см. учебные реппозитории { timestamps: {}, versionKey: false },
+  createdAt: { timestamps: {}, versionKey: false, required: false },
+  // todo req exp, timestamps см. учебные реппозитории { timestamps: {}, versionKey: false },
 });
 
 const Card = mongoose.model('Card', cardSchema);

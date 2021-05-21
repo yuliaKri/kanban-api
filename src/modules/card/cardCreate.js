@@ -12,7 +12,7 @@ function cardCreate(req, res) {
     priority: req.body.priority,
     markedToDelete: req.body.markedToDelete,
     imageURL: req.body.imageURL,
-    // createdAt: date,
+    createdAt: new Date(),
   });
   newCard.save();
   res.status(200).json('card created');
