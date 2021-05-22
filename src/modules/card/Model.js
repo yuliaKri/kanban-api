@@ -11,7 +11,7 @@ const cardSchema = new Schema({
   markedToDelete: Boolean,
   user: { type: String, required: false },
   imageURL: { type: String, required: false },
-  createdAt: { type: String, required: false },//timestamps: {}, versionKey: false, required: false },
+  createdAt: { type: String, required: false }, // timestamps: {}, versionKey: false, required: false },
   // todo req exp, timestamps см. учебные реппозитории { timestamps: {}, versionKey: false },
 });
 
