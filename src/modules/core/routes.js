@@ -2,11 +2,11 @@ const home = require('../home/home');
 const infoRouter = require('../info/Routes');
 const userRouter = require('../user/Routes');
 const cardRouter = require('../card/Routes');
-const upload = require('./multer');
-const cloudinary = require('./cloudinary');
-const cloudinary2 = require('cloudinary');
-const multer = require('multer');
-const fs = require('fs');
+//const upload = require('./multer');
+//const cloudinary = require('./cloudinary');
+//const cloudinary2 = require('cloudinary');
+//const multer = require('multer');
+//const fs = require('fs');
 //const image = require('/cat1.png')
 //const Image = require('./uploads/');
 //const cloudinaryStorage = require('multer-storage-cloudinary');
@@ -28,18 +28,18 @@ function routes(app) {
     res.send('upload-images');
   });
 
-  cloudinary2.config({
+  /*  cloudinary.config({
     cloud_name: 'der0prs31',
     api_key: '896119133195875',
     api_secret: 'cloudinary',
-  });
+  });*/
   /*const storage = cloudinaryStorage({
     cloudinary: cloudinary,
     folder: 'uploads',
     allowedFormats: ['jpg', 'png'],
     transformation: [{ width: 500, height: 500, crop: 'limit' }],
   });*/
-  const storage = multer.diskStorage({
+  /*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads/');
     },
@@ -72,9 +72,9 @@ function routes(app) {
     res.status(200).json({
       message: 'Image is Uploaded',
     });
-    /* uploads.create(image) // save image information in database
+    /!* uploads.create(image) // save image information in database
       .then((newImage) => res.json(newImage))
-      .catch((err) => console.log(err));*/
+      .catch((err) => console.log(err));*!/
   });
 
   // for cloudinary another approach
@@ -99,7 +99,7 @@ function routes(app) {
         err: 'Images NOT Uploaded',
       });
     }
-  });
+  });*/
 
   function column(req, res) {
     res.send(columns);
