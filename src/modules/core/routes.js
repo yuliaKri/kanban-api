@@ -2,8 +2,13 @@ const home = require('../home/home');
 const infoRouter = require('../info/Routes');
 const userRouter = require('../user/Routes');
 const cardRouter = require('../card/Routes');
-//const multer = require('multer');
-//const cloudinary = require('cloudinary');
+const upload = require('./multer');
+const cloudinary = require('./cloudinary');
+const cloudinary2 = require('cloudinary');
+const multer = require('multer');
+const fs = require('fs');
+//const image = require('/cat1.png')
+//const Image = require('./uploads/');
 //const cloudinaryStorage = require('multer-storage-cloudinary');
 
 const columns = [
@@ -19,29 +24,82 @@ function routes(app) {
   app.use('/user', userRouter);
   app.use('/card', cardRouter); //app.get('/card', card);
   app.get('/columns', column);
+  app.get('/upload-images', function info(req, res) {
+    res.send('upload-images');
+  });
 
-  /*  cloudinary.config({
+  cloudinary2.config({
     cloud_name: 'der0prs31',
     api_key: '896119133195875',
     api_secret: 'cloudinary',
   });
   /*const storage = cloudinaryStorage({
     cloudinary: cloudinary,
-    folder: 'images',
+    folder: 'uploads',
     allowedFormats: ['jpg', 'png'],
     transformation: [{ width: 500, height: 500, crop: 'limit' }],
+  });*/
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.original_filename);
+    },
   });
-  const parser = multer({ storage: storage });
+  const fileFilter = (req, file, cb) => {
+    if (file.mimeType === 'image/jpeg' || file.mimeType === 'image/png') {
+      cb(null, true);
+    } else {
+      cb({ message: 'Unsupported file format' }, false);
+    }
+  };
 
-  app.post('/images', parser.single('image'), (req) => {
-    console.log(req.file); // to see what is returned to you
+  const parser = multer({
+    storage: storage,
+    limits: { fileSize: 1024 * 1024 },
+    fileFilter: fileFilter,
+    // preservePath: '',
+  });
+  // const parser = multer({ storage: storage });
+  console.log(parser);
+
+  app.post('/images', parser.single('image'), (req, res) => {
+    console.log(req.file.url); // to see what is returned to you
     const image = {};
     image.url = req.file.url;
     image.id = req.file.public_id;
-    Image.create(image) // save image information in database
+    res.status(200).json({
+      message: 'Image is Uploaded',
+    });
+    /* uploads.create(image) // save image information in database
       .then((newImage) => res.json(newImage))
-      .catch((err) => console.log(err));
-  });*/
+      .catch((err) => console.log(err));*/
+  });
+
+  // for cloudinary another approach
+  app.use('/upload-images', upload.array('image'), async (req, res) => {
+    console.log(req.file);
+    const uploader = async (path) => await cloudinary.uploader.upload(path, 'Images');
+    if (req.method === 'POST') {
+      const urls = [];
+      const files = req.files;
+      for (const file of files) {
+        const { path } = file;
+        const newPath = await uploader(path);
+        urls.push(newPath);
+        fs.unlinkSync(path);
+      }
+      res.status(200).json({
+        message: 'Images Uploaded',
+        data: urls,
+      });
+    } else {
+      res.status(405).json({
+        err: 'Images NOT Uploaded',
+      });
+    }
+  });
 
   function column(req, res) {
     res.send(columns);

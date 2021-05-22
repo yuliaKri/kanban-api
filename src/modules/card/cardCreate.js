@@ -11,7 +11,7 @@ function cardCreate(req, res) {
     status: req.body.status,
     priority: req.body.priority,
     markedToDelete: req.body.markedToDelete,
-    imageURL: req.body.imageURL,
+    //imageURL: req.body.imageURL,
     createdAt: new Date(),
   });
   newCard.save();
